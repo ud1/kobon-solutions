@@ -1,0 +1,299 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #eeeef0;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #6c757d;
+    color: white;
+    font-size: 18px;
+}
+
+footer {
+    background-color: #6c757d;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px;
+    width: 100%;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+.gallery-item {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item svg {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+.gallery-item:hover svg {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.lightbox.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox svg.arrangement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes zoomIn {
+    from {transform:scale(0.8)}
+    to {transform:scale(1)}
+}
+
+.header-actions {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon {
+    font-size: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon:hover,
+.icon:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.icon svg {
+    width: 1em;
+    mix-blend-mode: difference;
+}
+
+.info-panel {
+    position: fixed;
+    top: 80px;
+    right: 35px;
+    width: 320px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.90);
+    border-radius: 8px;
+    z-index: 999;
+    border: 2px solid #888888;
+    backdrop-filter: blur(3px);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.80);
+}
+
+@media (max-width: 480px) {
+    .info-panel {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: 50vh;
+        border-radius: 16px 16px 0 0;
+    }
+}
+
+
+.info-properties {
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.property-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 4px;
+}
+
+.property-row.generators {
+    flex-direction: column;
+}
+
+.property-row dt {
+    font-weight: bold;
+    color: #555;
+    margin: 0;
+    padding-right: 10px;
+}
+
+.property-row dd {
+    margin: 0; /* Сбрасываем дефолтный отступ браузера для dd */
+    color: #000;
+    text-align: right;
+}
+
+.property-row.generators dd {
+    text-align: justify;
+}
+
+
+select {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 2.25em;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px #ddd;
+    box-sizing: border-box;
+    padding: .5em .6em;
+    vertical-align: middle;
+    text-transform: none;
+    font-size: 100%;
+    line-height: 1.15;
+    min-width: 7em;
+}
+
+#selectors {
+    padding: 10px;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+polygon.int.b {
+    fill: #888888;
+}
+
+polygon.ext.b {
+    fill: #eeeeee;
+}
+
+polygon.w {
+    fill: #ffffff;
+}
+
+
+polygon.s3.int.b {
+    fill: #000000;
+}
+
+polygon.s3.int.w {
+    fill: #222222;
+}
+
+polygon.s3.ext.b {
+    fill: #cccccc;
+}
+
+polygon.s3.ext.w {
+    fill: #dddddd;
+}
+
+
+polygon.s4.int.b {
+    fill: #888844;
+}
+
+polygon.s4.ext.b {
+    fill: #eeeecc;
+}
+
+polygon.s4.int.w {
+    fill: #ffffdd;
+}
+
+polygon.s4.ext.w {
+    fill: #ffffdd;
+}
+

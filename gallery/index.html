@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="./styles-fbfe9463002778f7.css" integrity="sha384-LCsZRaLEhdTga/wsT1nky7TlRX2SiFp2S1y9cGIDowZZ4n1iWJ9tOFpz8DwLUSV6"/>
+    <link rel="modulepreload" href="./kobon-solutions-14b253d4a5567683.js" crossorigin="anonymous" integrity="sha384-ApilVU+cS18n3qoWSkFaBLZCfKd3u33dgBziisD9aQ64L5h2SmYOfP7tzQJHQODY"><link rel="preload" href="./kobon-solutions-14b253d4a5567683_bg.wasm" crossorigin="anonymous" integrity="sha384-cd36ay4BKMG9nqdGc5qp0wPJasvU3gjXh2yg+EmUM0MRkYR3EtTS7cRhJWEz8z2s" as="fetch" type="application/wasm"></head>
+    <body>
+<script type="module">
+import init, * as bindings from './kobon-solutions-14b253d4a5567683.js';
+const wasm = await init({ module_or_path: './kobon-solutions-14b253d4a5567683_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
