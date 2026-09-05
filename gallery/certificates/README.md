@@ -15,8 +15,7 @@ Version 1 stores:
 - the mirrored source path and its SHA-256 digest;
 - a copy of `gens`, `n`, and the exact triangle count;
 - rational `[a, b, c]` triples for equations `a*x + b*y = c`;
-- the triple points and parallel pairs reconstructed from `gens`;
-- reproducibility metadata for the rationalization method used.
+- the triple points and parallel pairs reconstructed from `gens`.
 
 Run `python3 verification/verify_certificates.py` from the repository root to
 verify all certificates using exact rational arithmetic.

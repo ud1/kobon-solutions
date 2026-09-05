@@ -234,9 +234,5 @@
     ]
   ],
   "declared_triple_points": [],
-  "declared_parallel_pairs": [],
-  "rationalization": {
-    "method": "coefficient-rounding",
-    "max_coefficient_denominator": 39
-  }
+  "declared_parallel_pairs": []
 }
