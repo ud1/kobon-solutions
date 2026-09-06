@@ -95,22 +95,5 @@
       7
     ]
   ],
-  "declared_parallel_pairs": [],
-  "rationalization": {
-    "method": "dual-incidence-construction",
-    "max_seed_denominator": 3,
-    "seed_lines": [
-      0,
-      1,
-      2,
-      6,
-      7,
-      8,
-      9
-    ],
-    "linear_adjustment": {
-      "line": 2,
-      "coordinate": "b"
-    }
-  }
+  "declared_parallel_pairs": []
 }

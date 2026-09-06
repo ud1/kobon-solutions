@@ -115,9 +115,5 @@
       13
     ]
   ],
-  "declared_parallel_pairs": [],
-  "rationalization": {
-    "method": "coefficient-rounding-and-linear-projection",
-    "max_coefficient_denominator": 13
-  }
+  "declared_parallel_pairs": []
 }

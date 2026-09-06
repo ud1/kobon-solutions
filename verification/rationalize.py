@@ -557,22 +557,6 @@ def make_certificate(
     structure: WordStructure,
 ) -> dict[str, object]:
     source_relative = source.resolve().relative_to(repo_root.resolve()).as_posix()
-    if result.method == "dual-incidence-construction":
-        rationalization: dict[str, object] = {
-            "method": result.method,
-            "max_seed_denominator": result.max_seed_denominator,
-            "seed_lines": list(result.seeds),
-        }
-        if result.adjusted_line is not None:
-            rationalization["linear_adjustment"] = {
-                "line": result.adjusted_line,
-                "coordinate": result.adjusted_coordinate,
-            }
-    else:
-        rationalization = {
-            "method": result.method,
-            "max_coefficient_denominator": result.max_seed_denominator,
-        }
     return {
         "version": 1,
         "source": source_relative,
@@ -591,7 +575,6 @@ def make_certificate(
         "declared_parallel_pairs": [
             list(pair) for pair in sorted(structure.parallel_pairs)
         ],
-        "rationalization": rationalization,
     }
 
 
