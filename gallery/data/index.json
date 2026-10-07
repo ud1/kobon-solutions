@@ -109,6 +109,11 @@
   "k" : true,
   "a" : true
 }, {
+  "id" : "16-1",
+  "d" : "16 lines · 1 parallel pair",
+  "k" : true,
+  "a" : true
+}, {
   "id" : "16-4",
   "d" : "16 lines · 4 parallel pairs",
   "k" : true,
