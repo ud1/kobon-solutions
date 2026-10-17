@@ -7,7 +7,9 @@ It validates the data catalog, replays `gens`, counts bounded triangular faces
 combinatorially, and compares the exact event order of the stored line
 coefficients with the event order implied by `gens`.
 JSON decimals are read as exact rational values, without conversion
-through binary floating point.
+through binary floating point. Event order is checked with integer cross
+products after clearing coefficient denominators, avoiding a sort of rational
+intersection coordinates for each source.
 
 When the stored values do not represent declared parallel or triple events
 exactly, the checker attempts a deliberately limited repair. Parallel slopes

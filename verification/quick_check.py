@@ -32,6 +32,7 @@ from dataclasses import asdict, dataclass
 from decimal import Decimal, InvalidOperation
 from fractions import Fraction
 from itertools import combinations
+from math import lcm
 from pathlib import Path
 from typing import Iterable, Sequence
 
@@ -199,10 +200,33 @@ def first_row_difference(expected: EventRows, actual: EventRows) -> str:
 
 
 def compare_realization(lines: Sequence[Line], expected: WordStructure) -> tuple[bool, str]:
-    try:
-        actual_rows, actual_parallel = geometry_rows(lines)
-    except CheckError as exc:
-        return False, str(exc)
+    # Clear denominators once per line. Intersection x-coordinates can then
+    # be compared by integer cross products, without reducing and sorting
+    # hundreds of Fractions for each realization.
+    coefficients = []
+    for slope, intercept in lines:
+        denominator = lcm(slope.denominator, intercept.denominator)
+        coefficients.append((
+            slope.numerator * (denominator // slope.denominator),
+            intercept.numerator * (denominator // intercept.denominator),
+            denominator,
+        ))
+
+    intersections: list[dict[int, tuple[int, int]]] = [{} for _ in lines]
+    actual_parallel = set()
+    for i, j in combinations(range(len(lines)), 2):
+        ai, bi, di = coefficients[i]
+        aj, bj, dj = coefficients[j]
+        numerator = bj * di - bi * dj
+        denominator = ai * dj - aj * di
+        if denominator == 0:
+            if numerator == 0:
+                return False, f"coincident lines {i} and {j}"
+            actual_parallel.add((i, j))
+            continue
+        if denominator < 0:
+            numerator, denominator = -numerator, -denominator
+        intersections[i][j] = intersections[j][i] = (numerator, denominator)
 
     if actual_parallel != expected.parallel_pairs:
         missing = sorted(expected.parallel_pairs - actual_parallel)
@@ -211,11 +235,27 @@ def compare_realization(lines: Sequence[Line], expected: WordStructure) -> tuple
     # A pseudoline has no preferred orientation.  Depending on which side of
     # the affine chart its direction lies, the stored x-order is either the
     # generator row or its reverse.
-    if any(
-        actual != wanted and actual != tuple(reversed(wanted))
-        for wanted, actual in zip(expected.rows, actual_rows)
-    ):
-        return False, first_row_difference(expected.rows, actual_rows)
+    for line, row in enumerate(expected.rows):
+        previous = None
+        direction = 0
+        for event in row:
+            coordinate = intersections[line][next(iter(event))]
+            numerator, denominator = coordinate
+            if any(
+                numerator * intersections[line][other][1]
+                != intersections[line][other][0] * denominator
+                for other in event
+            ):
+                return False, f"line {line}: declared event {sorted(event)} is split"
+            if previous is not None:
+                difference = numerator * previous[1] - previous[0] * denominator
+                sign = (difference > 0) - (difference < 0)
+                if sign == 0:
+                    return False, f"line {line}: distinct events coincide"
+                if direction and direction != sign:
+                    return False, f"line {line}: event order differs"
+                direction = sign
+            previous = coordinate
     return True, ""
 
 
