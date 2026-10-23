@@ -111,6 +111,7 @@ Homogeneous = tuple[Scalar, Scalar, Scalar]
 FractionPoint = tuple[Fraction, Fraction, Fraction]
 ImplicitLine = tuple[Fraction, Fraction, Fraction]  # a*x + b*y = c
 CERTIFICATE_LINE_EQUATION = "a*x + b*y = c"
+DEFAULT_MAX_SIMPLE_DENOMINATOR = 100_000
 
 
 @dataclass(frozen=True)
@@ -409,7 +410,7 @@ def simple_rationalize_lines(
     source_lines: Sequence[Line],
     structure: WordStructure,
     *,
-    max_denominator: int = 5000,
+    max_denominator: int = DEFAULT_MAX_SIMPLE_DENOMINATOR,
 ) -> RationalizationResult:
     """Round free coefficients and impose the linear incidence constraints."""
 
@@ -510,7 +511,7 @@ def rationalize_for_certificate(
     source_lines: Sequence[Line],
     structure: WordStructure,
     *,
-    max_simple_denominator: int = 5000,
+    max_simple_denominator: int = DEFAULT_MAX_SIMPLE_DENOMINATOR,
     max_seed_denominator: int = 200,
 ) -> RationalizationResult:
     """Use the simple method when applicable, otherwise the dual construction."""
@@ -754,8 +755,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--max-simple-denominator",
         type=int,
-        default=5000,
-        help="maximum rounded coefficient denominator (default: 5000)",
+        default=DEFAULT_MAX_SIMPLE_DENOMINATOR,
+        help="maximum rounded coefficient denominator (default: %(default)s)",
     )
     parser.add_argument(
         "--certificates",

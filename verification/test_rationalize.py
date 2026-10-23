@@ -85,7 +85,6 @@ class RationalizeTests(unittest.TestCase):
                 result = rationalize_for_certificate(
                     parse_lines(data, n),
                     structure,
-                    max_simple_denominator=2000,
                     max_seed_denominator=10,
                 )
                 payload = make_certificate(
