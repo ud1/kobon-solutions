@@ -328,4 +328,9 @@
   "d" : "74 lines · no parallel pairs",
   "k" : true,
   "a" : false
+}, {
+  "id" : "81",
+  "d" : "81 lines · no parallel pairs",
+  "k" : true,
+  "a" : true
 } ]
