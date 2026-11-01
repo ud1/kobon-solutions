@@ -324,6 +324,11 @@
   "k" : true,
   "a" : true
 }, {
+  "id" : "65",
+  "d" : "65 lines · no parallel pairs",
+  "k" : true,
+  "a" : true
+}, {
   "id" : "74",
   "d" : "74 lines · no parallel pairs",
   "k" : true,
@@ -331,6 +336,21 @@
 }, {
   "id" : "81",
   "d" : "81 lines · no parallel pairs",
+  "k" : true,
+  "a" : true
+}, {
+  "id" : "89",
+  "d" : "89 lines · no parallel pairs",
+  "k" : true,
+  "a" : true
+}, {
+  "id" : "129",
+  "d" : "129 lines · no parallel pairs",
+  "k" : true,
+  "a" : true
+}, {
+  "id" : "161",
+  "d" : "161 lines · no parallel pairs",
   "k" : true,
   "a" : true
 } ]
