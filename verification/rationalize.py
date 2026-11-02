@@ -111,7 +111,7 @@ Homogeneous = tuple[Scalar, Scalar, Scalar]
 FractionPoint = tuple[Fraction, Fraction, Fraction]
 ImplicitLine = tuple[Fraction, Fraction, Fraction]  # a*x + b*y = c
 CERTIFICATE_LINE_EQUATION = "a*x + b*y = c"
-DEFAULT_MAX_SIMPLE_DENOMINATOR = 100_000
+DEFAULT_MAX_SIMPLE_DENOMINATOR = 1_000_000
 
 
 @dataclass(frozen=True)
