@@ -326,7 +326,7 @@
 }, {
   "id" : "61",
   "d" : "61 lines · no parallel pairs",
-  "k" : false,
+  "k" : true,
   "a" : true
 }, {
   "id" : "65",
