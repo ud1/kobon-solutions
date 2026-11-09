@@ -223,6 +223,15 @@ footer {
     height: 100vh;
 }
 
+.lightbox canvas.arrangement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
 @keyframes zoomIn {
     from {transform:scale(0.8)}
     to {transform:scale(1)}
