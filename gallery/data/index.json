@@ -356,7 +356,7 @@
 }, {
   "id" : "121",
   "d" : "121 lines · no parallel pairs",
-  "k" : false,
+  "k" : true,
   "a" : true
 }, {
   "id" : "129",
