@@ -38,7 +38,8 @@ from typing import Iterable, Sequence
 
 
 GENERATOR_RE = re.compile(r"^(\d+)(\*)?$")
-SERIES_RE = re.compile(r"^(\d+)(?:-(\d+))?$")
+# A suboptimal series (N-s) has no parallel pairs, like a plain N series.
+SERIES_RE = re.compile(r"^(\d+)(?:-(?:(\d+)|s))?$")
 
 
 class CheckError(ValueError):
